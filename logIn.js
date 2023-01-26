@@ -2,11 +2,13 @@ import session from 'express-session'
 import MongoStore from 'connect-mongo'
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
-import { Jwt } from 'jsonwebtoken';
-import { User } from './models/user';
+import jwt from 'jsonwebtoken'
+import { User } from './models/user.js'
  
 //session
 export default function login(servidor) {
+
+    const SALT = 'secreto'
 
     servidor.use(session({
         /* ----------------------------------------------------- */
@@ -15,6 +17,7 @@ export default function login(servidor) {
         store: MongoStore.create({
             //En Atlas connect App :  Make sure to change the node version to 2.2.12:
             mongoUrl: `mongodb+srv://root:12345@cluster0.mqhwyzp.mongodb.net/test`,
+            
         }),
         /* ----------------------------------------------------- */
 
@@ -55,6 +58,41 @@ export default function login(servidor) {
         )
     );
 
+    
+	  passport.use(
+        "register",
+        new LocalStrategy(
+            {
+                passReqToCallback: true,
+            },
+            function (req, username, password, done) {
+                    User.findOne({ username: username }, function (err, user) {
+                        if (err) {
+                            console.log("Error en la registración: " + err);
+                            return done(err);
+                        }
+                        if (user) {
+                            console.log("El usuario ya existe!");
+                            return done(null, false);
+                        } else {
+                            const usuario = {
+                                username: username,
+                                password: createHash(password)
+                            }
+                            User.create(usuario, (err, userWithId) => {
+                              if (err) {
+                                console.log('Error al grabar el usuario: ' + err);
+                                return done(err);
+                              }
+                              console.log(user)
+                              console.log('Registración de usuario exitosa!');
+                              return done(null, userWithId);
+                            });						 
+                        }
+                    });
+            }
+        )
+    );
      
 	  const validatePassword = (user, password) => {
 

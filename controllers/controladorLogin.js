@@ -10,6 +10,29 @@ function controladorWebLogin(req, res){
 
 }
 
+function controladorIraRegistro(req, res) {
+    res.render('registro')
+  }
+
+function controladorLogout(req, res){
+    res.render('logout', {usuario: req.session.user})
+    req.session.destroy();
+  }
+
+function controladorLoging(req, res){
+    if (req.isAuthenticated)
+        res.json({ username: req.session.user})
+    else
+        return res.redirect("/")
+}
+
+function controladorLoginp(req, res){
+    if (!req.isAuthenticated)
+        return res.redirect('/')
+    else
+        return  res.redirect('/formulario')
+}
+
 function controladorLoginUsuario(req, res){
     if (req.session.user){
         res.json({usuario: req.session.user})
@@ -17,6 +40,27 @@ function controladorLoginUsuario(req, res){
         res.redirect('/')
     }
 }
+
+function controladorVolveralogin(req, res){
+    setTimeout(() => {
+        return res.redirect('/')
+    }, 2000);
+}
+
+function controladorFaillogin(req, res){
+    res.render('faillogin')
+}
+
+function controladorFailregister(req, res){
+    res.render('failregister')
+
+    
+}
+
+function controladorIraLogin(req, res) {
+    res.redirect('/')
+  }
+  
 
 function controladorPostUsuario(req, res){
 
@@ -30,14 +74,18 @@ function controladorPostUsuario(req, res){
 
 }
 
-function controladorLogout(req, res){
-  res.render('logout', {usuario: req.session.user})
-  req.session.destroy();
-}
+
 
 
 
 export {controladorWebLogin, 
     controladorLoginUsuario,
     controladorPostUsuario,
-    controladorLogout };
+    controladorLogout,
+    controladorLoging,
+    controladorLoginp,
+    controladorVolveralogin,
+    controladorFaillogin,
+    controladorFailregister,
+    controladorIraRegistro,
+    controladorIraLogin};
