@@ -142,10 +142,11 @@ fetch('http://localhost:8080/formulario/login', {method: "GET"})
 .then(data => {
   console.log("este es el fetch get " + data.username)
 
-  if (data.username){
+ // if (data.username){
     document.getElementById('bienvenido').insertAdjacentHTML('beforeend', `<strong>Bienvenido ${data.username}</strong>`)
   }
-})
+//}
+)
     
 const logout = document.getElementById("salida")
 

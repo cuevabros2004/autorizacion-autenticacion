@@ -15,8 +15,8 @@ const routerLogin = express.Router()
 routerLogin.get('/', controladorWebLogin)
 routerLogin.get('/logout', controladorLogout)
 routerLogin.get('/volveralogin', controladorVolveralogin)
-routerLogin.get('/formulario/login', isAuthenticated, controladorLoging)
-routerLogin.post('/formulario/login',  controladorLoginp); 
+routerLogin.get('/formulario/login', controladorLoging)
+routerLogin.post('/formulario/login',  passport.authenticate("login", { failureRedirect: "/faillogin"}), controladorLoginp); 
 routerLogin.get('/registro', controladorIraRegistro)
 routerLogin.get('/login', controladorIraLogin)
 routerLogin.post('/formulario/registro', passport.authenticate("register", { successRedirect: "/formulario",  failureRedirect: "/failregister", passReqToCallback: true })); 
@@ -24,13 +24,6 @@ routerLogin.get('/faillogin', controladorFaillogin);
 routerLogin.get('/failregister', controladorFailregister);
 
 
-function isAuthenticated(req, res, next){
-    
-    if(req.isAuthenticated()){
-        return next();        
-    }
-    res.redirect('/')
-}
 
 export  default routerLogin 
 

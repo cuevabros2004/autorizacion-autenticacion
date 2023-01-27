@@ -25,8 +25,8 @@ export default function login(servidor) {
         ttl: 6000000,
         cookie:{
             httpOnly:false,
-            secure:false,
-            maxAge:600
+            secure:false//,
+         //   maxAge:600
         },
         rolling:true,
         resave: true,
