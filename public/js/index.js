@@ -140,10 +140,10 @@ fetch('http://localhost:8080/api/productos-test', {method:'GET'})
 fetch('http://localhost:8080/formulario/login', {method: "GET"})
 .then(response => response.json())
 .then(data => {
-  console.log("este es el fetch get " + data.usuario)
+  console.log("este es el fetch get " + data.username)
 
-  if (data.usuario){
-    document.getElementById('bienvenido').insertAdjacentHTML('beforeend', `<strong>Bienvenido ${data.usuario}</strong>`)
+  if (data.username){
+    document.getElementById('bienvenido').insertAdjacentHTML('beforeend', `<strong>Bienvenido ${data.username}</strong>`)
   }
 })
     

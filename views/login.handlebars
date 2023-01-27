@@ -1,21 +1,16 @@
-<h1 style="color:rgb(242, 243, 236); text-decoration: underline;">Login de Usuario</h1>
-<br>
-
-<form id="login" action="http://localhost:8080/formulario/login" method="POST">
-
-    <div class="form-group" style="color:rgb(242, 243, 236);">
-        <label for="nombre"><b>Ingrese su nombre: </b></label>
-        <input id="usuario" class="form-control" type="text" name="usuario" style="width:500px">
-            <button id="enviar" class="btn btn-success mt-3 mb-5"  style="background-color: rgb(35, 35, 139);" type="submit">Enviar</button>
-
-    </div>
-  
-
-     
-    {{!-- <script src="js/login.js"></script> --}}
-
+<form id="login" action="/formulario/login" method="POST">
+        <h1 style="margin-left: 150px"><strong>Log in de Usuario</strong></h1>
+        <br>
+        <label for="username" style="margin-left: 150px; display: block" ><b>E-mail: </b></label>
+        <input id="username" placeholder="E-mail: ejemplo@gmail.com" style="margin-left: 150px; width:220px; display: block"  type="text" name="username">
+        <label for="password" style="margin-left: 150px; display: block" ><b>Contraseña </b></label>
+        <input id="password" type="password" style="margin-left: 150px; width:220px; display: block"  type="text" name="password">
+        <button id="ingresar" style="margin-left: 150px; display: block" class="btn btn-success mt-3 mb-5"   type="submit" >Ingresar</button>
 </form>
- 
- <form id="registro" action="/registro" method="get">
+
+<form id="registro" action="/registro" method="get">
         <button id="registro" style="margin-left: 150px; display: block" class="btn btn-success mt-3 mb-5"   type="submit" >Ir a Register</button>
 </form>
+
+
+

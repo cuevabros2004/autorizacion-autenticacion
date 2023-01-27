@@ -20,17 +20,26 @@ function controladorLogout(req, res){
   }
 
 function controladorLoging(req, res){
-    if (req.isAuthenticated)
+    if (req.isAuthenticated){
+        
         res.json({ username: req.session.user})
-    else
+    }
+    else{
         return res.redirect("/")
+    }
+        
 }
 
 function controladorLoginp(req, res){
-    if (!req.isAuthenticated)
+    req.session.user = req.body.username
+
+     if (!req.isAuthenticated){
         return res.redirect('/')
-    else
+     }        
+    else{
         return  res.redirect('/formulario')
+    }
+        
 }
 
 function controladorLoginUsuario(req, res){

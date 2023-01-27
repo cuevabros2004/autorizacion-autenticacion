@@ -21,12 +21,12 @@ export default function login(servidor) {
         }),
         /* ----------------------------------------------------- */
 
-        secret: 'shhhhhhhhhhhhhhhhhhhhh',
-        ttl: 600,
+        secret: 'cuevakey',
+        ttl: 6000000,
         cookie:{
             httpOnly:false,
             secure:false,
-            maxAge:60000
+            maxAge:600
         },
         rolling:true,
         resave: true,
@@ -46,7 +46,7 @@ export default function login(servidor) {
                         console.log("User Not Found with username " + username);
                         return done(null, false);
                     }
-                    console.log(validatePassword(user, password))
+                    console.log('aca ' + validatePassword(user, password))
 
                     if (!validatePassword(user, password)) {
                         console.log("Invalid Password");

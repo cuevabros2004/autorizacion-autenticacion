@@ -16,7 +16,7 @@ routerLogin.get('/', controladorWebLogin)
 routerLogin.get('/logout', controladorLogout)
 routerLogin.get('/volveralogin', controladorVolveralogin)
 routerLogin.get('/formulario/login', isAuthenticated, controladorLoging)
-routerLogin.post('/formulario/login', passport.authenticate("login", { failureRedirect: "/faillogin", passReqToCallback: true }), controladorLoginp); 
+routerLogin.post('/formulario/login',  controladorLoginp); 
 routerLogin.get('/registro', controladorIraRegistro)
 routerLogin.get('/login', controladorIraLogin)
 routerLogin.post('/formulario/registro', passport.authenticate("register", { successRedirect: "/formulario",  failureRedirect: "/failregister", passReqToCallback: true })); 
@@ -25,6 +25,7 @@ routerLogin.get('/failregister', controladorFailregister);
 
 
 function isAuthenticated(req, res, next){
+    
     if(req.isAuthenticated()){
         return next();        
     }
